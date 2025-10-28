@@ -31,7 +31,7 @@ async def diagnose(file: UploadFile = File(...)):
     # Read uploaded image into memory
     contents = await file.read()
     latest_photo = BytesIO(contents)
-    result = diagnoser.diagnose(latest_photo)
+    result = diagnoser.diagnose(latest_photo) # ML SERVICE 
     return JSONResponse(content={"diagnosis": result})
 
 
