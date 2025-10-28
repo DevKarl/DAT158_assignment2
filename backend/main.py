@@ -3,8 +3,10 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
 from io import BytesIO
+from app.ml_service.diagnoser import Diagnoser
 
 app = FastAPI()
+diagnoser = Diagnoser()
 
 # Allow frontend to access backend
 origins = [
@@ -26,20 +28,14 @@ latest_photo: BytesIO | None = None
 @app.post("/diagnose")
 async def diagnose(file: UploadFile = File(...)):
     global latest_photo
-
     # Read uploaded image into memory
     contents = await file.read()
     latest_photo = BytesIO(contents)
-
-    # MARKUS og ANWAR 
-    # Kjør servicen for ML på data her..
-    
-
-    # Return dummy diagnosis
-    return JSONResponse(content={"diagnosis": "test response string data"})
+    result = diagnoser.diagnose(latest_photo)
+    return JSONResponse(content={"diagnosis": result})
 
 
-# For testing if photo in BE memory OK/NOT OK
+# ONLY FOR TESTING
 @app.get("/photo")
 def get_latest_photo():
     if latest_photo is None:
