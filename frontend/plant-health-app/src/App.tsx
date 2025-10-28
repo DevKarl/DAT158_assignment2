@@ -7,6 +7,7 @@ function App() {
   const [photoBlob, setPhotoBlob] = useState<Blob | null>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
   const [diagnosis, setDiagnosis] = useState<string | null>(null);
+  const [fetchedPhotoURL, setFetchedPhotoURL] = useState<string | null>(null);
 
   useEffect(() => {
     if (!photoURL) {
@@ -42,6 +43,7 @@ function App() {
     setPhotoBlob(null);
     setPhotoURL(null);
     setDiagnosis(null);
+    setFetchedPhotoURL(null);
   };
 
   const sendPhoto = async () => {
@@ -57,6 +59,16 @@ function App() {
       setDiagnosis(response.data.diagnosis);
     } catch (error) {
       console.error("Diagnosis failed:", error);
+    }
+  };
+
+  const fetchPhoto = async () => {
+    try {
+      const response = await api.get("/photo", { responseType: "blob" });
+      const url = URL.createObjectURL(response.data);
+      setFetchedPhotoURL(url);
+    } catch (error) {
+      console.error("Failed to fetch photo:", error);
     }
   };
 
@@ -76,12 +88,20 @@ function App() {
           <br />
           <button onClick={sendPhoto}>🔍 Diagnose</button>
           <button onClick={resetPhoto}>🔄 Take New Photo</button>
+          <button onClick={fetchPhoto}>🖼️ Fetch Photo</button>
           {diagnosis && (
             <p>
               <strong>Diagnosis:</strong> {diagnosis}
             </p>
           )}
         </>
+      )}
+
+      {fetchedPhotoURL && (
+        <div>
+          <h3>Fetched from backend:</h3>
+          <img src={fetchedPhotoURL} alt="Fetched" style={{ width: "300px" }} />
+        </div>
       )}
 
       <canvas ref={canvasRef} style={{ display: "none" }} />
