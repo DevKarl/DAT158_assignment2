@@ -8,7 +8,7 @@ This is a full-stack web application that allows users to take a photo of a hous
 
 ```
 .
-├── backend/                  # FastAPI backend with ML inference
+├── backend/                  # Python Backend with FastAPI, PyTorch and more
 │   ├── main.py
 │   └── app/
 ├── frontend/
@@ -23,7 +23,7 @@ This is a full-stack web application that allows users to take a photo of a hous
 
 ## 🚀 How to Run Locally
 
-### 🧪 Backend (FastAPI + Python)
+### 🧪 Backend
 
 1. Create a virtual environment:
 
@@ -51,7 +51,7 @@ This is a full-stack web application that allows users to take a photo of a hous
 
 ---
 
-### 🎨 Frontend (React + Vite + TypeScript)
+### 🎨 Frontend
 
 1. Navigate to the frontend folder:
 
@@ -59,7 +59,7 @@ This is a full-stack web application that allows users to take a photo of a hous
    cd frontend/plant-health-frontend
    ```
 
-2. Install dependencies:
+2. Install dependencies(make sure node.js + npm is installed):
 
    ```bash
    npm install
@@ -81,7 +81,7 @@ This is a full-stack web application that allows users to take a photo of a hous
 ## 📸 How It Works
 
 - The frontend uses the browser’s camera to capture a photo of a plant.
-- The photo is sent to the backend via a `POST /predict` request.
+- The photo is sent to the backend via a `POST /diagnose` request.
 - The backend runs ML inference and returns a diagnosis like `"Healthy"` or `"Needs water"`.
 - The frontend displays the result to the user.
 
@@ -91,10 +91,5 @@ This is a full-stack web application that allows users to take a photo of a hous
 
 - Make sure your browser allows camera access.
 - The backend must be running before you click “Diagnose” in the frontend.
-- You can customize the ML model or response format in `main.py`.
 
 ---
-
-## 👥 Contributors
-
-This project was developed as part of a student group assignment. Feel free to fork, test, or extend it!
