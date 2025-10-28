@@ -12,13 +12,15 @@
   "dependencies": {
     "axios": "^1.13.0",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
+    "@types/styled-components": "^5.1.35",
     "@vitejs/plugin-react": "^5.0.4",
     "esbuild": "^0.25.11",
     "eslint": "^9.36.0",
