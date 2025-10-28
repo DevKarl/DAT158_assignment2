@@ -8,11 +8,11 @@ This is a full-stack web application that allows users to take a photo of a hous
 
 ```
 .
-├── backend/                  # Python Backend with FastAPI, PyTorch and more
+├── backend/               # Python Backend with FastAPI, PyTorch and more
 │   ├── main.py
 │   └── app/
 ├── frontend/
-│   └── plant-health-frontend/  # React + Vite + TypeScript frontend
+│   └── plant-health-app/  # React app
 │       ├── src/
 │       └── public/
 ├── .gitignore
