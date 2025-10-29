@@ -25,56 +25,52 @@ This is a full-stack web application that allows users to take a photo of a hous
 
 ### 🧪 Backend
 
-1. Create a virtual environment:
+This guide helps you set up and run the backend locally using Python. Works on macOS, Linux, and Windows.
 
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # or venv\Scripts\activate on Windows
-   ```
+## 🚀 How to Run Locally
 
-2. Install dependencies:
+```bash
+# 1. Navigate to the backend folder
+cd backend
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+# 2. Create a virtual environment (first time only)
+python -m venv venv
 
-3. Start the backend server:
+# 3. Activate the virtual environment
+# macOS/Linux:
+source venv/bin/activate
+# Windows CMD:
+venv\Scripts\activate
+# Windows PowerShell:
+.\venv\Scripts\Activate.ps1
 
-   ```bash
-   uvicorn main:app --reload
-   ```
+# 4. Install dependencies
+pip install -r requirements.txt
 
-4. The backend will run at:
-   ```
-   http://localhost:8000
-   ```
+# 5. Start the backend server
+uvicorn main:app --reload
+```
+
+Once running, the backend will be available at:  
+`http://localhost:8000`
 
 ---
 
-### 🎨 Frontend
+### 🎨 Frontend Setup (React + TypeScript)
 
-1. Navigate to the frontend folder:
+```bash
+# 1. Navigate to the frontend folder
+cd frontend/plant-health-frontend
 
-   ```bash
-   cd frontend/plant-health-frontend
-   ```
+# 2. Install dependencies (requires Node.js + npm)
+npm install
 
-2. Install dependencies(make sure node.js + npm is installed):
+# 3. Start the development server
+npm run dev
+```
 
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-4. The frontend will run at:
-   ```
-   http://localhost:5173
-   ```
+Frontend will run at:  
+`http://localhost:5173`
 
 ---
 
@@ -90,6 +86,6 @@ This is a full-stack web application that allows users to take a photo of a hous
 ## 🧠 Notes
 
 - Make sure your browser allows camera access.
-- The backend must be running before you click “Diagnose” in the frontend.
+- The backend must be running before you run the frontend.
 
 ---
