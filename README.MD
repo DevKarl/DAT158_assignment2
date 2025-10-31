@@ -1,6 +1,36 @@
 # 🌿 Plant Health Diagnoser
 
-This is a full-stack web application that allows users to take a photo of a houseplant and receive a health diagnosis. The frontend is built with React + TypeScript and uses the browser's camera API to capture images. The backend is powered by FastAPI and serves a machine learning model that analyzes the image and returns a textual diagnosis.
+This is a full-stack web application that allows users to take a photo of common plants and receive a health diagnosis. The frontend is built with React + TypeScript and uses the browser's camera API to capture images. The backend is powered by FastAPI and serves a machine learning model that analyzes the image and returns a textual diagnosis.
+
+🌿 Supported Plant Types
+
+Apple
+
+Blueberry
+
+Cherry (including sour cherry)
+
+Corn (maize)
+
+Grape
+
+Orange
+
+Peach
+
+Pepper (bell)
+
+Potato
+
+Raspberry
+
+Soybean
+
+Squash
+
+Strawberry
+
+Tomato
 
 ---
 
