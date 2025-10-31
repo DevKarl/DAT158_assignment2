@@ -46,3 +46,6 @@ venv/
 .env/
 .venv/
 
+# ignore model 
+model.pt
+
