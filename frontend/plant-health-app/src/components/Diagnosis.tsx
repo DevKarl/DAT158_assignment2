@@ -5,7 +5,7 @@ interface Props {
 export default function Diagnosis({ diagnosis }: Props) {
   return (
     <p className="diagnosis-text">
-      <strong>Diagnosis:</strong> {diagnosis}
+      <strong>Backend response:</strong> {diagnosis}
     </p>
   );
 }
