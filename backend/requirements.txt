@@ -4,3 +4,5 @@ requests
 python-multipart
 pillow
 torch
+torchvision
+python-dotenv
