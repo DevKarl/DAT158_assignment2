@@ -50,6 +50,11 @@
   color: white;
 }
 
+.btn.clearBg {
+  background-color: #b8adac;
+  color: white;
+}
+
 .btn:hover {
   opacity: 0.85;
 }
@@ -75,4 +80,8 @@
 
 .flash-overlay.active {
   opacity: 0.8;
+}
+
+.photo-upload {
+  
 }
