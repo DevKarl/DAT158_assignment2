@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import api from "../api";
 import Button from "./Button";
+import type DiagnosisResult from "../types/DIagnosisResult";
 
 interface Props {
   photoBlob: Blob | null;
   diagnosisLoading: boolean;
-  diagnosis: string | null;
+  diagnosis: DiagnosisResult | null;
   resetPhoto: () => void;
-  setDiagnosis: (arg: string | null) => void;
+  setDiagnosis: (arg: DiagnosisResult | null) => void;
   setDiagnosisLoading: (arg: boolean) => void;
 }
 
@@ -30,7 +31,9 @@ export default function ButtonActions({
       const response = await api.post("/diagnose", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      setDiagnosis(response.data.diagnosis);
+
+      const result: DiagnosisResult = response.data.diagnosis;
+      setDiagnosis(result);
     } catch (error) {
       console.error("Diagnosis failed:", error);
     } finally {
