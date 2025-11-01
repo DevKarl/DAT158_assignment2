@@ -1,3 +1,4 @@
+import os
 from app.ml_service.background_normalizer import BackgroundNormalizer
 import uvicorn
 from fastapi import FastAPI, UploadFile, File
@@ -9,11 +10,7 @@ from app.ml_service.diagnoser import Diagnoser
 app = FastAPI()
 diagnoser = Diagnoser()
 
-# Allow frontend to access backend
-origins = [
-    "http://localhost:5173",  # Vite dev server
-    "http://localhost:3000",  # Optional fallback
-]
+origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
 
 app.add_middleware(
     CORSMiddleware,

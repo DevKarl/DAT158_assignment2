@@ -1,8 +1,9 @@
+import os
 import torch
 import requests
 from torchvision import models
 
-MODEL_URL = "https://github.com/DevKarl/DAT158_assignment2/releases/download/v1.0/model.pt"
+MODEL_URL = os.getenv("MODEL_URL")
 
 class ModelLoader:
     @staticmethod
