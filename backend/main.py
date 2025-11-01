@@ -1,3 +1,4 @@
+from app.ml_service.background_normalizer import BackgroundNormalizer
 import uvicorn
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
@@ -35,14 +36,18 @@ async def diagnose(file: UploadFile = File(...)):
     return JSONResponse(content={"diagnosis": result})
 
 
-# ONLY FOR TESTING
-@app.get("/photo")
-def get_latest_photo():
-    if latest_photo is None:
-        return JSONResponse(content={"error": "No photo uploaded yet"}, status_code=404)
+@app.post("/normalizeBackground")
+async def normalize_background(file: UploadFile = File(...)):
+    contents = await file.read()
+    image_bytes = BytesIO(contents)
 
-    latest_photo.seek(0)  # Reset pointer before streaming
-    return StreamingResponse(latest_photo, media_type="image/jpeg")
+    normalized_image = BackgroundNormalizer.normalize(image_bytes)
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    output_bytes = BytesIO()
+    normalized_image.save(output_bytes, format="JPEG")
+    output_bytes.seek(0)
+
+    return StreamingResponse(output_bytes, media_type="image/jpeg")
+
+
+
