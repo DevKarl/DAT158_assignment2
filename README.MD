@@ -1,9 +1,11 @@
 # 🌿 Plant Health Diagnosis App – DAT158 Assignment 2
 
-A full-stack machine learning app for diagnosing plant leaf diseases using image classification.  
-Built with React, FastAPI, and PyTorch and more — trained on a Kaggle dataset and deployed for public testing.
+A full-stack machine learning web application for diagnosing plant leaf diseases using image classification.  
+Built with React, FastAPI, and PyTorch — trained on a Kaggle dataset and deployed for public testing.
 
-This is a full-stack web application that allows users to take a photo of common plants and receive a health diagnosis. The frontend is built with React + TypeScript and uses the browser's camera API to capture images. The backend is powered by FastAPI and serves a machine learning model that analyzes the image and returns a textual diagnosis.
+Users can either capture a photo using their device’s camera or upload an existing image of a plant leaf.  
+The frontend, built with React + TypeScript, handles image input and communicates with the backend via API requests.  
+The backend, powered by FastAPI and PyTorch, runs a trained ResNet18 model to analyze the image and return a diagnosis including plant type, health status, and confidence score.
 
 🌿 Supported Plant Types:
 
