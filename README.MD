@@ -1,38 +1,53 @@
-# 🌿 Plant Health Diagnoser
+# 🌿 Plant Health Diagnosis App – DAT158 Assignment 2
+
+A full-stack machine learning app for diagnosing plant leaf diseases using image classification.  
+Built with React, FastAPI, and PyTorch and more — trained on a Kaggle dataset and deployed for public testing.
 
 This is a full-stack web application that allows users to take a photo of common plants and receive a health diagnosis. The frontend is built with React + TypeScript and uses the browser's camera API to capture images. The backend is powered by FastAPI and serves a machine learning model that analyzes the image and returns a textual diagnosis.
 
-🌿 Supported Plant Types
+🌿 Supported Plant Types:
 
-Apple
-
-Blueberry
-
-Cherry (including sour cherry)
-
-Corn (maize)
-
-Grape
-
-Orange
-
-Peach
-
-Pepper (bell)
-
-Potato
-
-Raspberry
-
-Soybean
-
-Squash
-
-Strawberry
-
-Tomato
+- Apple
+- Blueberry
+- Cherry (including sour cherry)
+- Corn (maize)
+- Grape
+- Orange
+- Peach
+- Pepper (bell)
+- Potato
+- Raspberry
+- Soybean
+- Squash
+- Strawberry
+- Tomato
 
 ---
+
+### 📁 Dataset Used
+
+This project uses the [New Plant Diseases Dataset (Augmented)](https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset) from Kaggle.  
+The dataset contains labeled images of healthy and diseased leaves across various plant species.  
+It was used to train the classification model (`model.pt`) included in this project.
+
+---
+
+### 🧠 Model Training
+
+The training script used to generate `model.pt` is included as `train_model.py`.  
+It was executed in Google Colab using PyTorch.  
+To retrain the model, simply upload the Kaggle dataset to your Google Drive and run the script in the notebook.  
+Training took approximately 40 minutes using the free T4 GPU runtime provided by Colab.
+
+---
+
+### 🔧 Model Hosting
+
+The trained model (`model.pt`) is publicly hosted via GitHub Releases:  
+[Download model.pt](https://github.com/DevKarl/DAT158_assignment2/releases/download/v1.0/model.pt)
+
+The backend automatically downloads and loads the model from this URL at runtime.  
+No manual setup or `.env` file is required.
 
 ## 🧱 Project Structure
 
@@ -106,16 +121,19 @@ Frontend will run at:
 
 ## 📸 How It Works
 
-- The frontend uses the browser’s camera to capture a photo of a plant.
-- The photo is sent to the backend via a `POST /diagnose` request.
-- The backend runs ML inference and returns a diagnosis like `"Healthy"` or `"Needs water"`.
-- The frontend displays the result to the user.
+- Users can either **capture a photo using their camera** or **upload an image file** from their device.
+- The image is sent to the backend via a `POST /diagnose` request.
+- Optionally, users can preprocess the image using the `POST /normalizeBackground` endpoint to remove the background and improve model accuracy.
+- The backend runs ML inference using a pretrained ResNet18 model and returns:
+  - **Plant type** (e.g., `"Apple"`)
+  - **Health status** (e.g., `"Black_rot"`)
+  - **Confidence score** (e.g., `92.3%`)
+- The frontend displays the diagnosis result to the user.
 
 ---
 
 ## 🧠 Notes
 
-- Make sure your browser allows camera access.
-- The backend must be running before you run the frontend.
-
----
+- Make sure your browser allows camera access if using the capture feature.
+- The backend must be running and accessible before using the diagnosis or normalization features.
+- Background normalization is optional but may improve prediction accuracy in some cases.
