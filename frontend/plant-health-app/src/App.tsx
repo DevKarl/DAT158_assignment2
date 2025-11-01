@@ -9,6 +9,7 @@ import { handleNormalize } from "./helpers/normalizeImage";
 import Button from "./components/Button";
 import { createGlobalStyle } from "styled-components";
 import SupportedPlants from "./components/SupportedPlants";
+import type DiagnosisResult from "./types/DIagnosisResult";
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -107,7 +108,7 @@ const StyledParagraph = styled.p`
 function App() {
   const [photoBlob, setPhotoBlob] = useState<Blob | null>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
-  const [diagnosis, setDiagnosis] = useState<string | null>(null);
+  const [diagnosis, setDiagnosis] = useState<DiagnosisResult | null>(null);
   const [cameraActive, setCameraActive] = useState<boolean>(false);
   const [diagnosisLoading, setDiagnosisLoading] = useState(false);
   const [clearingLoading, setClearingLoading] = useState(false);
@@ -214,9 +215,7 @@ function App() {
           <StyledParagraph>
             {bgCleared && !diagnosis && <em> Background cleared ✓ </em>}
             {!bgCleared && photoURL && (
-              <em>
-                Clearing the background will make the result more accurate!
-              </em>
+              <em>Clearing the background can make the result more accurate</em>
             )}
           </StyledParagraph>
         }
