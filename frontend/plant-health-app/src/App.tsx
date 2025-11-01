@@ -94,12 +94,6 @@ const BackgroundOption = styled.div`
   margin-top: 1rem;
 `;
 
-const DiagnosisText = styled.p`
-  margin-top: 1rem;
-  font-size: 1.1rem;
-  color: white;
-`;
-
 const StyledParagraph = styled.p`
   margin-top: 15px;
   margin-bottom: 0px;
