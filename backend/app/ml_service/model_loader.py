@@ -1,25 +1,25 @@
 import torch
-import os
+import requests
 from torchvision import models
-from dotenv import load_dotenv
 
-load_dotenv()
-MODEL_PATH = os.getenv("MODEL_PATH")
-
-if not os.path.exists(MODEL_PATH):
-    raise FileNotFoundError(f"MODEL_PATH not found: {MODEL_PATH}")
+MODEL_URL = "https://github.com/DevKarl/DAT158_assignment2/releases/download/v1.0/model.pt"
 
 class ModelLoader:
     @staticmethod
     def load_model():
-        # ResNet18
+        print(f"🔄 Downloading model from {MODEL_URL}...")
+        response = requests.get(MODEL_URL)
+        model_bytes = response.content
+
         model = models.resnet18()
-        
-        # matching our trained model..
-        num_classes = 38  # tilsvarer datasettet samme antall classes 
+        num_classes = 38  # matches the Kaggle dataset
         model.fc = torch.nn.Linear(model.fc.in_features, num_classes)
 
-        # weights
-        model.load_state_dict(torch.load(MODEL_PATH, map_location="cpu"))
+        # Load weights from bytes
+        from io import BytesIO
+        buffer = BytesIO(model_bytes)
+        model.load_state_dict(torch.load(buffer, map_location="cpu"))
+
         model.eval()
+        print("✅ Model loaded from remote URL.")
         return model
