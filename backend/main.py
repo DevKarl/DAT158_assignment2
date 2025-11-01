@@ -6,6 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
 from io import BytesIO
 from app.ml_service.diagnoser import Diagnoser
+from dotenv import load_dotenv
+load_dotenv()
 
 app = FastAPI()
 diagnoser = Diagnoser()

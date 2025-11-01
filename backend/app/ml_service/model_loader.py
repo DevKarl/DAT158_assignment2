@@ -2,6 +2,8 @@ import os
 import torch
 import requests
 from torchvision import models
+from dotenv import load_dotenv
+load_dotenv()
 
 MODEL_URL = os.getenv("MODEL_URL")
 
