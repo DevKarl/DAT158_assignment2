@@ -7,19 +7,21 @@ from app.ml_service.predict import predict_label
 
 class Diagnoser:
     def __init__(self):
-        # load trained model 
         self.model = ModelLoader.load_model()
 
-    def diagnose(self, image_bytes: BytesIO) -> str:
-        
-        # Convert img bytes to PIL.Image
+    def diagnose(self, image_bytes: BytesIO) -> tuple[str, str, float]:
         image = Image.open(image_bytes).convert("RGB")
-
-        # Preprocess image for model input
         image_tensor = preprocess_image(image)
 
         # Run prediction and get label + confidence
         label, confidence = predict_label(self.model, image_tensor)
 
-        # Return the diagnosis string
-        return f"{label} ({confidence:.0%})"
+        # Split label into plant + health status
+        if "___" in label:
+            plant, health_status = label.split("___", 1)
+        else:
+            plant = label
+            health_status = "Healthy"
+
+        return plant, health_status, confidence
+

@@ -26,14 +26,24 @@ app.add_middleware(
 # In-memory storage for uploaded photo
 latest_photo: BytesIO | None = None
 
+
 @app.post("/diagnose")
 async def diagnose(file: UploadFile = File(...)):
     global latest_photo
-    # Read uploaded image into memory
     contents = await file.read()
     latest_photo = BytesIO(contents)
-    result = diagnoser.diagnose(latest_photo) # ML SERVICE 
-    return JSONResponse(content={"diagnosis": result})
+
+    result = diagnoser.diagnose(latest_photo)  # returns raw model output
+
+    label, health_status, confidence = result
+
+    return JSONResponse(content={
+        "diagnosis": {
+            "label": label,
+            "healthStatus": health_status,
+            "confidence": round(confidence * 100, 2)  # percentage format
+        }
+    })
 
 
 @app.post("/normalizeBackground")
