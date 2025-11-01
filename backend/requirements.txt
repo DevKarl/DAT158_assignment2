@@ -6,3 +6,5 @@ pillow
 torch
 torchvision
 python-dotenv
+rembg
+onnxruntime
