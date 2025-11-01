@@ -1,26 +1,26 @@
 import api from "../api";
+import Button from "./Button";
 
 interface Props {
   photoBlob: Blob | null;
-  setPhotoBlob: (arg: Blob | null) => void;
+  diagnosisLoading: boolean;
+  diagnosis: string | null;
+  resetPhoto: () => void;
   setDiagnosis: (arg: string | null) => void;
-  setPhotoURL: (arg: string | null) => void;
+  setDiagnosisLoading: (arg: boolean) => void;
 }
 
 export default function ButtonActions({
   photoBlob,
-  setPhotoBlob,
-  setPhotoURL,
+  diagnosisLoading,
+  diagnosis,
+  resetPhoto,
   setDiagnosis,
+  setDiagnosisLoading,
 }: Props) {
-  const resetPhoto = () => {
-    setPhotoBlob(null);
-    setPhotoURL(null);
-    setDiagnosis(null);
-  };
-
-  const sendPhoto = async () => {
+  const handleDiagnose = async () => {
     if (!photoBlob) return;
+    setDiagnosisLoading(true);
 
     const formData = new FormData();
     formData.append("file", photoBlob, "photo.jpg");
@@ -32,17 +32,25 @@ export default function ButtonActions({
       setDiagnosis(response.data.diagnosis);
     } catch (error) {
       console.error("Diagnosis failed:", error);
+    } finally {
+      setDiagnosisLoading(false);
     }
   };
 
   return (
     <div className="button-group">
-      <button className="btn success" onClick={sendPhoto}>
-        🔍 Diagnose
-      </button>
-      <button className="btn secondary" onClick={resetPhoto}>
-        🔄 Take New Photo
-      </button>
+      {!diagnosis && (
+        <Button
+          onClick={handleDiagnose}
+          loading={diagnosisLoading}
+          className="btn success"
+        >
+          🔍 Diagnose
+        </Button>
+      )}
+      <Button onClick={resetPhoto} className="btn secondary">
+        🔄 Reset Photo
+      </Button>
     </div>
   );
 }
