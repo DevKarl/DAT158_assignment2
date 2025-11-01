@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import api from "../api";
 import Button from "./Button";
 
@@ -38,19 +39,27 @@ export default function ButtonActions({
   };
 
   return (
-    <div className="button-group">
+    <ButtonGroup>
       {!diagnosis && (
         <Button
           onClick={handleDiagnose}
           loading={diagnosisLoading}
-          className="btn success"
+          variant="diagnose"
         >
           🔍 Diagnose
         </Button>
       )}
-      <Button onClick={resetPhoto} className="btn secondary">
-        🔄 Reset Photo
+      <Button onClick={resetPhoto} variant="red">
+        🔄 New photo
       </Button>
-    </div>
+    </ButtonGroup>
   );
 }
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  align-items: center;
+`;

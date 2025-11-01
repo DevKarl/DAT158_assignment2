@@ -1,5 +1,8 @@
+import styled from "styled-components";
 import { useRef } from "react";
 import { useCamera } from "../hooks/useCamera";
+import ImageContainer from "./ImageContainer";
+import Button from "./Button";
 
 interface Props {
   onCapture: (blob: Blob, url: string) => void;
@@ -31,14 +34,18 @@ export default function CameraView({ onCapture, photoURL }: Props) {
   };
 
   return (
-    <>
-      <video ref={videoRef} autoPlay className="video-stream" />
+    <ImageContainer>
+      <VideoStream ref={videoRef} autoPlay muted playsInline />
       <canvas ref={canvasRef} style={{ display: "none" }} />
-      <div className="button-group">
-        <button className="btn primary" onClick={takePhoto}>
-          📸 Take Photo
-        </button>
-      </div>
-    </>
+      <Button onClick={takePhoto} variant="default">
+        📸 Take Photo
+      </Button>
+    </ImageContainer>
   );
 }
+
+const VideoStream = styled.video`
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+`;
