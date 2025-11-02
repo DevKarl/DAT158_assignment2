@@ -1,6 +1,5 @@
 import os
 from app.ml_service.background_normalizer import BackgroundNormalizer
-import uvicorn
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
@@ -57,8 +56,4 @@ async def normalize_background(file: UploadFile = File(...)):
     output_bytes.seek(0)
 
     return StreamingResponse(output_bytes, media_type="image/jpeg")
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port)
 
