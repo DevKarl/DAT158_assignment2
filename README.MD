@@ -26,6 +26,8 @@ The backend, powered by FastAPI and PyTorch, runs a trained ResNet18 model to an
 
 ---
 
+👉 [Link to YT demo video](https://www.youtube.com/watch?v=YCozlWj5nFc)
+
 ### 📁 Dataset Used
 
 This project uses the [New Plant Diseases Dataset (Augmented)](https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset) from Kaggle.
