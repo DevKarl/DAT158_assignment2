@@ -1,17 +1,17 @@
-import os
 from app.ml_service.background_normalizer import BackgroundNormalizer
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
 from io import BytesIO
 from app.ml_service.diagnoser import Diagnoser
-from dotenv import load_dotenv
-load_dotenv()
 
 app = FastAPI()
 diagnoser = Diagnoser()
 
-origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+origins = [
+    "http://localhost:5173",  # Vite dev server
+    "http://localhost:3000",  # Optional fallback
+]
 
 app.add_middleware(
     CORSMiddleware,
