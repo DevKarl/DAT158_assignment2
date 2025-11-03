@@ -78,8 +78,6 @@ No manual setup or `.env` file is required.
 
 This guide helps you set up and run the backend locally using Python. Works on macOS, Linux, and Windows.
 
-## 🚀 How to Run Locally
-
 ```bash
 # 1. Navigate to the backend folder
 cd backend
