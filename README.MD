@@ -1,7 +1,7 @@
 # 🌿 Plant Health Diagnosis App – DAT158 Assignment 2
 
 A full-stack machine learning web application for diagnosing plant leaf diseases using image classification.  
-Built with React, FastAPI, and PyTorch — trained on a Kaggle dataset and deployed for public testing.
+Built with React, FastAPI, and PyTorch — trained on a Kaggle dataset.
 
 Users can either capture a photo using their device’s camera or upload an existing image of a plant leaf.  
 The frontend, built with React + TypeScript, handles image input and communicates with the backend via API requests.  
@@ -31,7 +31,7 @@ The backend, powered by FastAPI and PyTorch, runs a trained ResNet18 model to an
 ### 📁 Dataset Used
 
 This project uses the [New Plant Diseases Dataset (Augmented)](https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset) from Kaggle.
-The dataset contains labeled images of healthy and diseased leaves across various plant species.
+The dataset contains labeled images of healthy and unhealhty leaves across various plant species.
 It was used to train the classification model (`model.pt`) included in this project.
 
 ---
@@ -50,7 +50,7 @@ Training took approximately 40 minutes using the free T4 GPU runtime provided by
 The trained model (`model.pt`) is publicly hosted via GitHub Releases:
 [Download model.pt](https://github.com/DevKarl/DAT158_assignment2/releases/download/v1.0/model.pt)
 
-The backend automatically downloads and loads the model from this URL at runtime.
+The backend automatically downloads and loads the model at runtime.
 No manual setup or `.env` file is required.
 
 ## 🧱 Project Structure
@@ -77,8 +77,6 @@ No manual setup or `.env` file is required.
 ### 🧪 Backend
 
 This guide helps you set up and run the backend locally using Python. Works on macOS, Linux, and Windows.
-
-## 🚀 How to Run Locally
 
 ```bash
 # 1. Navigate to the backend folder
